@@ -1,0 +1,7 @@
+mss==10.2.0
+numpy==2.5.4
+Pillow==13.0.0
+pystray==0.19.5
+pywin32==312
+comtypes>=1.4.13,<2
+playwright==1.64.0

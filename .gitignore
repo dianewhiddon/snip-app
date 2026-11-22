@@ -1,0 +1,12 @@
+.venv/
+browser-profile/
+__pycache__/
+*.pyc
+capture.log
+capture.log.*
+config.local.toml
+.tools/
+dist/
+.ruff_cache/
+.impeccable/
+*.egg-info/

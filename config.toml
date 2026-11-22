@@ -1,0 +1,18 @@
+# Personal overrides belong in config.local.toml; reload while idle.
+save_dir = "~/Pictures/Snip"
+copy_to_clipboard = true
+clipboard_max_height = 8000
+max_pixels = 40000000
+sounds = true
+
+[scroll]
+wheel_ticks = 4
+settle_ms = 450
+max_height = 20000
+max_steps = 80
+
+[fullpage]
+viewport_width = 1440
+timeout_seconds = 60
+settle_ms = 1500
+max_height = 20000

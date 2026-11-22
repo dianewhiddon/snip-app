@@ -1,0 +1,60 @@
+# Release verification
+
+## 0.1.5 · November 3, 2026
+
+38 Windows tests including all nine controlled desktop checks passed at 200% display scaling. Real window/scroll capture pixels, region selection, browser address lookup, the URL prompt, palette, annotation and tray lifecycle were exercised with fictional/local fixtures. No real private capture or clipboard contents are included in the test artifacts.
+
+Runtime dependency advisory checks found no known vulnerabilities. Public runtime dependencies are unchanged. A transient Windows lock on a temporary Chromium log caused one cleanup failure; the isolated final rerun is recorded in the release evidence.
+
+The source archive, fresh installation, exact-commit hosted checks and anonymous download checksum are verified before publication is closed out. Real reboot/sign-in and untested hardware are not certified by these fixtures.
+
+## 0.1.4 · November 3, 2026
+
+Battery release. The window's action queue wakes when work is posted instead of on a 40-millisecond timer; a 250-millisecond check remains as a safety net. Capture, annotation, saving, the shortcut and the installer are unchanged.
+
+36 default tests, Ruff lint and Ruff formatting passed on Windows 11 x64 with Python 3.12; nine opt-in tests were skipped as before. Idle use was measured on one laptop with the personal edition of the same change: about 0.39% of one core before and about 0.08% after, over 40 seconds, at the resolution of the Windows process timer. A live capture was not repeated on this edition's installation for this release.
+
+## 0.1.3 · October 25, 2026
+
+Browser-address fix. With Chrome started normally (no accessibility flag), 0.1.2's lookup returned nothing on the first call and 0.1.3 returned the exact address in about one second with the clipboard sequence unchanged. The 27 default tests, lint and formatting pass on Windows 11 x64 with Python 3.12, and the interactive address test passes. The other eight desktop fixtures were not rerun; capture code is unchanged. Dependencies are unchanged from 0.1.2.
+
+## 0.1.2 · October 23, 2026
+
+Dependency security update: Pillow 13.0.0 in the runtime lock; certifi 2026.10.19 and uv 0.13.4 in the development lock. Application code is unchanged.
+
+A fresh hash-locked installation passed `pip check`, Ruff lint and formatting, and the 27 default tests on Windows 11 x64 with Python 3.12, with no Pillow deprecation warnings. The runtime lock passed its advisory audit. The nine opt-in desktop fixtures were not rerun for this dependency-only release; they last passed for 0.1.1.
+
+Release assets are built from the exact commit, with hosted checks, exported-tree/history secret scans and an unauthenticated SHA-256 download check recorded in the versioned release notes.
+
+## 0.1.1 · October 16, 2026
+
+27 default tests and all nine controlled native desktop checks passed. The runtime lock passed its advisory audit. Capture, save, clipboard and installer behavior are unchanged.
+
+The implemented gold theme was compared with the approved native previews at normal and constrained sizes, including populated, empty, hover, focus and error states where applicable. Actions are gold with white labels; links and dark-surface focus are light gold; surfaces and selections are neutral gray. White on gold is an approved visual exception, not a claim of AA small-text contrast. Full screen-reader, high-contrast and mixed-DPI support remain unverified.
+
+Release assets are built from the exact commit, with hosted checks, exported-tree/history secret scans and an unauthenticated SHA-256 download check recorded in the versioned release notes. Existing personal installations are not modified.
+
+## Previous release evidence
+
+
+## 0.1.0
+
+Local verification: October 15, 2026, Windows 11 x64, Python 3.12.
+
+- **36 tests passed**, including nine opt-in desktop tests. These cover actual window pixels, scrolling pixels against an exact fixture, frozen-frame region selection/cancellation, negative-coordinate placement, keyboard operation, tray startup/shutdown and a live browser-address lookup that leaves the clipboard sequence unchanged.
+- The production shortcut was not registered during tests. A separate Ctrl+Shift+F24 registration exercised Windows conflict detection, message delivery and release.
+- Real headless Chromium captured a local 2,700-pixel page. HTTP failure and an oversized page produced no final file.
+- Regression tests cover atomic saves, collision protection, source preservation, opaque redaction, invalid configuration, clipboard failure and worker completion through Tk's queue.
+- Ruff lint and format checks passed. Installed dependencies passed `pip check`; the runtime lock had no known advisories in the release-time `pip-audit` result.
+- Optional shortcut creation/removal and refusal to remove a foreign shortcut passed in an isolated directory.
+- An independent Impeccable review inspected eight native interface captures. Its two material findings, image access in a narrow editor and focused Cancel behavior, were fixed and scored resolved in the follow-up review.
+
+This repository has no hosted CI workflow. Before each release, the default suite and dependency audit run locally against the released environment.
+
+The release process also requires a fresh archive installation, full public-history and exported-tree secret scans, and an unauthenticated download/checksum comparison. The versioned release notes record those completed checks for the exact published artifact.
+
+## Limits of the evidence
+
+The desktop fixtures are controlled samples, not a claim that every application, site or display arrangement works. Mixed-DPI physical monitor combinations, full screen-reader access, localized browser address bars, Windows 10 and Windows ARM are not verified. Native clipboard pixel transfer is covered through its encoded payload and resource/failure tests; the release checks do not overwrite a user's existing clipboard for a real paste test.
+
+Scrolling capture can end early on animation, repeated blank content or fixed elements. Website authentication and bot detection vary by site. High-contrast themes and large text scaling have not received a complete accessibility review. Windows source downloads are unsigned; there is no standalone executable in this release.
